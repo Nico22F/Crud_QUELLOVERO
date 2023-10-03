@@ -1,6 +1,6 @@
 ﻿namespace Crud_QUELLOVERO
 {
-    partial class Form1
+    partial class titolo_ordinamento
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -39,6 +39,9 @@
             this.mostra = new System.Windows.Forms.Button();
             this.modifica = new System.Windows.Forms.Button();
             this.delete_button = new System.Windows.Forms.Button();
+            this.ordina = new System.Windows.Forms.Button();
+            this.ordine = new System.Windows.Forms.Label();
+            this.titolo_totale = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titolo_prodotto
@@ -88,7 +91,7 @@
             this.lista.FormattingEnabled = true;
             this.lista.Location = new System.Drawing.Point(610, 31);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(178, 407);
+            this.lista.Size = new System.Drawing.Size(178, 329);
             this.lista.TabIndex = 5;
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             // 
@@ -97,9 +100,9 @@
             this.titolo.AutoSize = true;
             this.titolo.Location = new System.Drawing.Point(607, 9);
             this.titolo.Name = "titolo";
-            this.titolo.Size = new System.Drawing.Size(29, 13);
+            this.titolo.Size = new System.Drawing.Size(43, 13);
             this.titolo.TabIndex = 6;
-            this.titolo.Text = "titolo";
+            this.titolo.Text = "Prodotti";
             // 
             // ConfermaModifica
             // 
@@ -142,11 +145,42 @@
             this.delete_button.UseVisualStyleBackColor = true;
             this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
             // 
-            // Form1
+            // ordina
+            // 
+            this.ordina.Location = new System.Drawing.Point(15, 244);
+            this.ordina.Name = "ordina";
+            this.ordina.Size = new System.Drawing.Size(160, 20);
+            this.ordina.TabIndex = 11;
+            this.ordina.Text = " Ordina in modo alfabetico";
+            this.ordina.UseVisualStyleBackColor = true;
+            this.ordina.Click += new System.EventHandler(this.ordina_Click);
+            // 
+            // ordine
+            // 
+            this.ordine.AutoSize = true;
+            this.ordine.Location = new System.Drawing.Point(681, 9);
+            this.ordine.Name = "ordine";
+            this.ordine.Size = new System.Drawing.Size(107, 13);
+            this.ordine.TabIndex = 12;
+            this.ordine.Text = "ordine alfabetico: NO";
+            // 
+            // titolo_totale
+            // 
+            this.titolo_totale.AutoSize = true;
+            this.titolo_totale.Location = new System.Drawing.Point(615, 370);
+            this.titolo_totale.Name = "titolo_totale";
+            this.titolo_totale.Size = new System.Drawing.Size(74, 13);
+            this.titolo_totale.TabIndex = 13;
+            this.titolo_totale.Text = "Totale prezzo:";
+            // 
+            // titolo_ordinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.titolo_totale);
+            this.Controls.Add(this.ordine);
+            this.Controls.Add(this.ordina);
             this.Controls.Add(this.delete_button);
             this.Controls.Add(this.modifica);
             this.Controls.Add(this.mostra);
@@ -158,7 +192,7 @@
             this.Controls.Add(this.titolo_prezzo);
             this.Controls.Add(this.text_nome);
             this.Controls.Add(this.titolo_prodotto);
-            this.Name = "Form1";
+            this.Name = "titolo_ordinamento";
             this.Text = "Finestra22F";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -178,6 +212,9 @@
         private System.Windows.Forms.Button mostra;
         private System.Windows.Forms.Button modifica;
         private System.Windows.Forms.Button delete_button;
+        private System.Windows.Forms.Button ordina;
+        private System.Windows.Forms.Label ordine;
+        private System.Windows.Forms.Label titolo_totale;
     }
 }
 

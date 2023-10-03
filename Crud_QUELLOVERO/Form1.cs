@@ -14,7 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Crud_QUELLOVERO
 {
-    public partial class Form1 : Form
+    public partial class titolo_ordinamento : Form
     {
         // structure
 
@@ -25,7 +25,7 @@ namespace Crud_QUELLOVERO
         }
         public prodotto[] p = new prodotto[100];
         public int dim;
-        public Form1()
+        public titolo_ordinamento()
         {
             InitializeComponent();
             dim = 0;
@@ -38,6 +38,7 @@ namespace Crud_QUELLOVERO
 
         public bool conferma_modifica = false;
         public bool conferma_elimina = false;
+        public string prezzo_tot; // variabile per il prezzo totale 
 
         // funzione per aggiungere i prodotti 
 
@@ -58,19 +59,35 @@ namespace Crud_QUELLOVERO
             return $"{p.nome}:{p.prezzo}";
         }
 
+        // funzione che fa la somma del prezzo
+
+        public void Somma(ref string somma)
+        {
+            float sommaa = 0;
+
+            for (int i = 0; i < dim; i++)
+            {
+                sommaa += p[i].prezzo;
+            }
+            somma = sommaa.ToString();
+        }
+
         // bottone che aggiunge un prodotto alla lista
         private void create_Click(object sender, EventArgs e)
         {
             // mostrare anche le text box solo se cliccato
             // controllo input corretto
 
-
             p[dim].nome = text_nome.Text;
             p[dim].prezzo = float.Parse(text_prezzo.Text);
             dim++;
+            // aggiorno la lista
             visualizza(p);
             text_nome.Text = "";
             text_prezzo.Text = "";
+            // aggiorno il prezzo totale
+            Somma(ref prezzo_tot);
+            titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
             MessageBox.Show("Prodotto Aggiunto!");
 
         }
@@ -97,6 +114,8 @@ namespace Crud_QUELLOVERO
             lista.Visible = true;
             conferma_modifica = true;
             conferma_elimina = false; // può essere attivata una sola funzione
+            MessageBox.Show("Procedi con la modifica del prodotto da lei selezionato (per continuare clicca il nome del prodotto che vuoi modificare nella lista prodotti)");
+
         }
 
         // split
@@ -134,7 +153,6 @@ namespace Crud_QUELLOVERO
             if (conferma_modifica == true)
             {
                 int scelta = lista.SelectedIndex;
-                MessageBox.Show("Procedi con la modifica del prodotto da lei selezionato (per continuare clicca il nome del prodotto che vuoi modificare nella lista prodotti)");
                 string oggettomodifca = lista.Items[scelta].ToString();
                 string[] modificona = Split(oggettomodifca);
                 text_nome.Text = modificona[0];
@@ -142,6 +160,7 @@ namespace Crud_QUELLOVERO
                 ConfermaModifica.Visible = true;
                 nomignolo = text_nome.Text;
                 prezzolo = float.Parse(text_prezzo.Text);
+                
             }
             // elimina prodotto
             if (conferma_elimina == true)
@@ -182,8 +201,11 @@ namespace Crud_QUELLOVERO
 
                         visualizza(p);
 
-                        MessageBox.Show("Prodotto eliminato con succcesso");
+                        // aggiorno il prezzo totale
+                        Somma(ref prezzo_tot);
+                        titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
 
+                        MessageBox.Show("Prodotto eliminato con succcesso");
                         break;
                     // se l'utente ha cliccato no
                     case DialogResult.No:
@@ -206,6 +228,9 @@ namespace Crud_QUELLOVERO
             visualizza(p);
             text_nome.Text = "";
             text_prezzo.Text = "";
+            // aggiorno il prezzo totale
+            Somma(ref prezzo_tot);
+            titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
             MessageBox.Show("Prodotto Aggiornato!");
             ConfermaModifica.Visible = false;
         }
@@ -216,6 +241,21 @@ namespace Crud_QUELLOVERO
             conferma_elimina = true;
             conferma_modifica = false;
             MessageBox.Show("Procedi con l'eliminazione del prodotto! (per continuare clicca il nome del prodotto che vuoi eliminare nella lista prodotti)");
+        }
+
+        private void ordina_Click(object sender, EventArgs e)
+        {
+            if (lista.Sorted == false)
+            {
+                lista.Sorted = true;
+                ordine.Text = "Ordine alfabetico: SI";
+            }
+            else
+            {
+                lista.Sorted = false;
+                ordine.Text = "Ordine alfabetico: NO";
+                visualizza(p);
+            }
         }
     }
 }
