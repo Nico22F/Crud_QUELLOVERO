@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO; // serve per usare streamread e streamwriter
+using System.Diagnostics;
 
 namespace Crud_QUELLOVERO
 {
@@ -171,17 +172,61 @@ namespace Crud_QUELLOVERO
         // bottone che aggiunge un prodotto alla lista
         private void create_Click(object sender, EventArgs e)
         {
-            // mostrare anche le text box solo se cliccato
-            // controllo input corretto
+            // input box nome e do while per input corretto
+            bool uscita = false;
+            bool errore = false; // nel caso l'utente esca quando inserisce il nome oppure lascia il campo vuoto, non verrà chiesto il prezzo
 
-            p[dim].nome = text_nome.Text;
-            p[dim].prezzo = float.Parse(text_prezzo.Text);
-            dim++;
-            // aggiorno la lista
-            visualizza(p);
-            text_nome.Text = "";
-            text_prezzo.Text = "";
+            string titolo_input = "Aggiungi Prodotto - NOME", esempio = "nome prodotto", frase = "Inserisci il nome del prodotto che vuoi aggiungere";
+            object input_aggiungiprodotto = Interaction.InputBox(frase, titolo_input, esempio);
+
+            if ((string)input_aggiungiprodotto == "") // user esce o lascia il campo vuoto
+            {
+                MessageBox.Show("Errore nell'aggiunta del prodotto", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errore = true;
+            }
+            else
+            {
+                p[dim].nome = (string)input_aggiungiprodotto;
+            }
+
+            // input box prezzo
+
+            // do-while per il prezzo
+
+           if (errore == false)
+           {
+                do
+                {
+                    uscita = false;
+                    titolo_input = "Aggiungi Prodotto - Prezzo"; esempio = "prezzo prodotto"; frase = "Inserisci il prezzo del prodotto che vuoi aggiungere";
+                    input_aggiungiprodotto = Interaction.InputBox(frase, titolo_input, esempio);
+
+
+                    if ((string)input_aggiungiprodotto == "" || (int)input_aggiungiprodotto >= 65 || (int)input_aggiungiprodotto <= 122) // user esce o lascia il campo vuoto
+                    {
+                        MessageBox.Show("Errore nell'aggiunta del prodotto", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        p[dim].nome = null;
+                        
+                    }
+                    else
+                    {
+                        p[dim].prezzo = (float)input_aggiungiprodotto;
+                        dim++;
+                        uscita = true;
+                    }
+
+                }
+                while (uscita == false);
+           }
+           else
+           {
+                errore = false;
+           }
+
+            // controllo input prezzo
+
             // mostro la lista e i vari titoli
+
             lista.Visible = true;
             prelista.Visible = false;
             titolo.Visible = true;
