@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.IO; // serve per usare streamread e streamwriter
 
 namespace Crud_QUELLOVERO
 {
@@ -27,11 +28,16 @@ namespace Crud_QUELLOVERO
         public int dim;
         public titolo_ordinamento()
         {
+            // non mostro alcune label / oggetti
             InitializeComponent();
             dim = 0;
             lista.Visible = false;
             titolo.Visible = false;
             ConfermaModifica.Visible = false;
+            ordine.Visible = false;
+            titolo_totale.Visible = false;
+            prodotto_costoso.Visible = false;
+            prodotto_menocostoso.Visible = false;
         }
 
         // variabili booleane per modificare / eliminare i prodotti
@@ -39,12 +45,15 @@ namespace Crud_QUELLOVERO
         public bool conferma_modifica = false;
         public bool conferma_elimina = false;
         public string prezzo_tot; // variabile per il prezzo totale 
+        public int piucostoso, menocostoso;
+        public string[] ordinamento;
+        public bool ordinamento_alfabetico = false;
 
         // funzione per aggiungere i prodotti 
 
         // mostra prodotti
 
-        public void visualizza(prodotto[] pp)
+        public void visualizza(prodotto[] p)
         {
             lista.Items.Clear();
             for (int i = 0; i < dim; i++)
@@ -72,6 +81,93 @@ namespace Crud_QUELLOVERO
             somma = sommaa.ToString();
         }
 
+        // funzione che trova il prodotto più costoso e meno costoso
+
+        public void PiueMenoCostoso(ref int pcostoso, ref int pmenocostoso) // trova la posizione nello struct
+        {
+            float x = -999; // variabile per il più costoso
+            float y = 999999999; // variabile per il meno costoso
+            for (int i = 0; i < dim; i++)
+            {
+                // più costoso
+
+                if (p[i].prezzo > x)
+                {
+                    x = p[i].prezzo;
+                    pcostoso = i;
+                }
+
+                // meno costoso
+
+                if (p[i].prezzo < y)
+                {
+                    y = p[i].prezzo;
+                    pmenocostoso = i;
+                }
+            }
+        }
+
+        // funzione che ordina la lista (non struct) in ordine alfabetico
+
+        public void Alfabetico(ref string[] prodotti)
+        {
+            prodotti = new string[dim];
+
+            // array con nomi e prezzi (es: matita:5)
+
+            for (int i = 0; i < dim; i++)
+            {
+                prodotti[i] = (lista.Items[i].ToString()).ToLower(); // metto tutto in minuscolo
+
+            }
+
+            // ordine alfabetico tramite ascii (97<=x=>122)
+
+
+            string temp; // variabile temporanea
+            bool scambi = false;
+            do
+            {
+                scambi = false;
+
+                for (int i = 0, j = 1; j <= prodotti.Length - 1; i++,j++)
+                {
+                    // x = i e y = j
+                    string x = prodotti[i],y = prodotti[j]; // variabili che contengono le stringhe
+
+                    // split nome (da matita:5 --> matita :5)
+
+                    string[]x_array = Split(x);
+                    string[]y_array = Split(y);
+
+                    // scompongo tutta la parola in ascii
+                    int parolax = 0;
+                    for (int a = 0; a < x_array[0].Length; a++)
+                    {
+                        parolax += (int)(x_array[0])[a];
+                    }
+
+                    // scompongo tutta la parola in ascii
+                    int parolay = 0;
+                    for (int a = 0; a < y_array[0].Length; a++)
+                    {
+                        parolay += (int)(y_array[0])[a];
+                    }
+
+                    if (parolax > parolay) // se è minore vuol dire che è prima della seconda viceversa se è maggiore
+                    {
+                        temp = prodotti[i];
+                        prodotti[i] = prodotti[j];
+                        prodotti[j] = temp;
+                        scambi = true;
+                    }
+                    
+                }
+            }
+            while (scambi == true) ;
+
+        }
+
         // bottone che aggiunge un prodotto alla lista
         private void create_Click(object sender, EventArgs e)
         {
@@ -85,25 +181,24 @@ namespace Crud_QUELLOVERO
             visualizza(p);
             text_nome.Text = "";
             text_prezzo.Text = "";
+            // mostro la lista e i vari titoli
+            lista.Visible = true;
+            prelista.Visible = false;
+            titolo.Visible = true;
+            ordine.Visible = true;
+            titolo_totale.Visible = true;
             // aggiorno il prezzo totale
             Somma(ref prezzo_tot);
             titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
+            // aggiorno il prodotto più costoso e meno costoso
+            PiueMenoCostoso(ref piucostoso, ref menocostoso);
+            prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+            prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+            prodotto_costoso.Visible = true;
+            prodotto_menocostoso.Visible = true;
+            // conferma aggiunta prodotto
             MessageBox.Show("Prodotto Aggiunto!");
 
-        }
-        // bottone che mostra gli elementi della lista (mostra direttamente la lista)
-        private void mostra_Click(object sender, EventArgs e)
-        {
-            if (lista.Visible == false)
-            {
-                lista.Visible = true;
-                titolo.Visible = true;
-            }
-            else
-            {
-                lista.Visible = false;
-                titolo.Visible = false;
-            }
         }
 
         // bottone che modifica un prodotto
@@ -148,6 +243,8 @@ namespace Crud_QUELLOVERO
         // modificare / eliminare un prodotto
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // controllo che se clicco una zona vuota della lista, non dia errore
+
             // modifica prodotto
 
             if (conferma_modifica == true)
@@ -205,6 +302,29 @@ namespace Crud_QUELLOVERO
                         Somma(ref prezzo_tot);
                         titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
 
+
+                        // aggiorno il prodotto più costoso e meno costoso
+                        PiueMenoCostoso(ref piucostoso, ref menocostoso);
+                        prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+                        prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+                        prodotto_costoso.Visible = true;
+                        prodotto_menocostoso.Visible = true;
+
+                        // se non ci sono più prodotti, tolgo la lista e i vari label e mostro il label "non ci sono prodotti"
+
+                        if (lista.Items.Count == 0)
+                        {
+                            lista.Visible = false;
+                            titolo.Visible = false;
+                            ordine.Visible = false;
+                            prodotto_costoso.Visible = false;
+                            prodotto_menocostoso.Visible = false;
+                            titolo_totale.Visible = false;
+                            prelista.Visible = true;
+                        }
+
+                        // prodotto eliminato (msgbox)
+
                         MessageBox.Show("Prodotto eliminato con succcesso");
                         break;
                     // se l'utente ha cliccato no
@@ -231,6 +351,12 @@ namespace Crud_QUELLOVERO
             // aggiorno il prezzo totale
             Somma(ref prezzo_tot);
             titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
+            // aggiorno il prodotto più costoso e meno costoso
+            PiueMenoCostoso(ref piucostoso, ref menocostoso);
+            prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+            prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+            prodotto_costoso.Visible = true;
+            prodotto_menocostoso.Visible = true;
             MessageBox.Show("Prodotto Aggiornato!");
             ConfermaModifica.Visible = false;
         }
@@ -243,18 +369,28 @@ namespace Crud_QUELLOVERO
             MessageBox.Show("Procedi con l'eliminazione del prodotto! (per continuare clicca il nome del prodotto che vuoi eliminare nella lista prodotti)");
         }
 
+        // bottone per ordinare 
         private void ordina_Click(object sender, EventArgs e)
         {
-            if (lista.Sorted == false)
+           
+            // se non è già ordinato
+            if (ordinamento_alfabetico == false)
             {
-                lista.Sorted = true;
+                Alfabetico(ref ordinamento);
+                lista.Items.Clear();
+                for (int i = 0; i < ordinamento.Length; i++)
+                {
+                    lista.Items.Add(ordinamento[i]);
+                }
                 ordine.Text = "Ordine alfabetico: SI";
+                ordinamento_alfabetico = true;
             }
-            else
+            else // se è già ordinato
             {
-                lista.Sorted = false;
+                lista.Items.Clear();
                 ordine.Text = "Ordine alfabetico: NO";
                 visualizza(p);
+                ordinamento_alfabetico = false;
             }
         }
     }
