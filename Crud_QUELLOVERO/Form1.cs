@@ -434,7 +434,7 @@ namespace Crud_QUELLOVERO
             {
                 // scrittura file
 
-                StreamWriter scrivi = new StreamWriter("./lista.csv");
+                StreamWriter scrivi = new StreamWriter("lista.csv");
                 scrivi.WriteLine("NOME;PREZZO");
 
                 // scrivo tutti i prezzi e nomi
