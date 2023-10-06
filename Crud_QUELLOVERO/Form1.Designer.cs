@@ -47,6 +47,7 @@
             this.titolo_dellaModifica = new System.Windows.Forms.Label();
             this.salva_file = new System.Windows.Forms.Button();
             this.sconto = new System.Windows.Forms.Button();
+            this.lettura_file = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titolo_prodotto
@@ -237,11 +238,22 @@
             this.sconto.Text = "Aggiungi o togli la percentuale dal prezzo totale";
             this.sconto.UseVisualStyleBackColor = true;
             // 
+            // lettura_file
+            // 
+            this.lettura_file.Location = new System.Drawing.Point(19, 235);
+            this.lettura_file.Name = "lettura_file";
+            this.lettura_file.Size = new System.Drawing.Size(200, 29);
+            this.lettura_file.TabIndex = 20;
+            this.lettura_file.Text = "importa lista";
+            this.lettura_file.UseVisualStyleBackColor = true;
+            this.lettura_file.Click += new System.EventHandler(this.lettura_file_Click);
+            // 
             // titolo_ordinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.lettura_file);
             this.Controls.Add(this.sconto);
             this.Controls.Add(this.salva_file);
             this.Controls.Add(this.titolo_dellaModifica);
@@ -290,6 +302,7 @@
         private System.Windows.Forms.Label titolo_dellaModifica;
         private System.Windows.Forms.Button salva_file;
         private System.Windows.Forms.Button sconto;
+        private System.Windows.Forms.Button lettura_file;
     }
 }
 

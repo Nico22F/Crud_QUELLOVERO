@@ -14,6 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO; // serve per usare streamread e streamwriter
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 
 namespace Crud_QUELLOVERO
 {
@@ -231,6 +232,7 @@ namespace Crud_QUELLOVERO
         // bottone che modifica un prodotto
         private void modifica_Click(object sender, EventArgs e)
         {
+
             // mostra lista prodotti
 
             lista.Visible = true;
@@ -241,14 +243,14 @@ namespace Crud_QUELLOVERO
         }
 
         // split
-        static string[] Split(string stringa)
+        static string[] Split(string stringa, char separatore)
         {
             string[] array = new string[2];
             string frase = "";
             int p = 0;
             for (int i = 0; i < stringa.Length; i++)
             {
-                if (stringa[i] == ':')
+                if (stringa[i] == separatore)
                 {
                     array[p] = frase; p++; frase = "";
                 }
@@ -290,7 +292,8 @@ namespace Crud_QUELLOVERO
                     titolo_prodotto.Visible = true;
                     titolo_dellaModifica.Visible = true;
                     string oggettomodifca = lista.Items[scelta].ToString();
-                    string[] modificona = Split(oggettomodifca);
+                    char separatore = ':';
+                    string[] modificona = Split(oggettomodifca, separatore);
                     text_nome.Text = modificona[0];
                     text_prezzo.Text = modificona[1];
                     ConfermaModifica.Visible = true;
@@ -302,7 +305,6 @@ namespace Crud_QUELLOVERO
             // elimina prodotto
             if (conferma_elimina == true)
             {
-
                 if (lista.SelectedIndex < 0) // in caso l'utente clicchi una zona senza item della lista (controllo)
                 {
                     MessageBox.Show("Errore nell'eliminazione del prodotto. Clicca un prodotto nella lista", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -321,7 +323,8 @@ namespace Crud_QUELLOVERO
                         case DialogResult.Yes:
                             // eliminazione prodotto dalla struct
                             lista.Items.Clear();
-                            string[] modificona = Split(oggettoDAELIMINARE);
+                            char separatore = ':';
+                            string[] modificona = Split(oggettoDAELIMINARE,separatore);
 
                             for (int i = 0; i < dim; i++)
                             {
@@ -418,6 +421,17 @@ namespace Crud_QUELLOVERO
 
         private void delete_button_Click(object sender, EventArgs e)
         {
+            // se modifica è attivo, allora rendo invisibili gli oggetti
+
+            ConfermaModifica.Visible = false;
+            text_nome.Visible = false;
+            text_prezzo.Visible = false;
+            titolo_prezzo.Visible = false;
+            titolo_prodotto.Visible = false;
+            titolo_dellaModifica.Visible = false;
+
+            // mostro quello che mi serve
+
             lista.Visible = true;
             conferma_elimina = true;
             conferma_modifica = false;
@@ -451,6 +465,58 @@ namespace Crud_QUELLOVERO
 
                 MessageBox.Show($"File csv creato! Il file si trova in: {percorsoFile}");
             }
+        }
+
+        private void lettura_file_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("Presta attenzione, per piacere, il file da importare deve essere scritto nel seguente modo:\n\nNomeProdotto;PrezzoProdotto\nNomeProdotto2;PrezzoProdotto2", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            OpenFileDialog file_lettura = new OpenFileDialog(); // inizializza importazione
+            DialogResult result = file_lettura.ShowDialog(); // apre i fili (nel pc)
+            string file = file_lettura.FileName; // percorso del file
+
+            // inserimento dati nella struct
+            StreamReader sr = new StreamReader(file); // inizializzo la lettura del file
+
+            dim = 0;
+            string[] array_temporaneo = new string[2];
+            string riga;
+            riga = sr.ReadLine();
+
+            while (riga != null)
+            {
+                // aggiungo i prodotti alla lista e allo struct
+                char separatore = ';';
+                array_temporaneo = Split(riga, separatore);
+                p[dim].nome = array_temporaneo[0];
+                p[dim].prezzo = float.Parse(array_temporaneo[1]);
+                dim++;
+                riga = sr.ReadLine();
+            }
+
+            sr.Close();
+
+            // tutti gli aggiornamenti
+
+            visualizza(p);
+            lista.Visible = true;
+            prelista.Visible = false;
+            titolo.Visible = true;
+            ordine.Visible = true;
+            titolo_totale.Visible = true;
+            // aggiorno il prezzo totale
+            Somma(ref prezzo_tot);
+            titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
+            // aggiorno il prodotto più costoso e meno costoso
+            PiueMenoCostoso(ref piucostoso, ref menocostoso);
+            prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+            prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+            prodotto_costoso.Visible = true;
+            prodotto_menocostoso.Visible = true;
+            // conferma aggiunta prodotto
+            MessageBox.Show("Lista importata con successo!");
+
         }
 
         // bottone per ordinare 
