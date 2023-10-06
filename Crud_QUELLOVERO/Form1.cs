@@ -13,6 +13,7 @@ using Microsoft.VisualBasic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO; // serve per usare streamread e streamwriter
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Crud_QUELLOVERO
 {
@@ -445,8 +446,10 @@ namespace Crud_QUELLOVERO
                 }
 
                 scrivi.Close(); // finito di copiare su file csv
+                // serve per trovare il percorso del file
+                string percorsoFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "lista.csv");
 
-                MessageBox.Show("File csv creato!");
+                MessageBox.Show($"File csv creato! Il file si trova in: {percorsoFile}");
             }
         }
 
