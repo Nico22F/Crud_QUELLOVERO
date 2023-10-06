@@ -44,12 +44,14 @@
             this.prelista = new System.Windows.Forms.Label();
             this.prodotto_costoso = new System.Windows.Forms.Label();
             this.prodotto_menocostoso = new System.Windows.Forms.Label();
+            this.titolo_dellaModifica = new System.Windows.Forms.Label();
+            this.salva_file = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titolo_prodotto
             // 
             this.titolo_prodotto.AutoSize = true;
-            this.titolo_prodotto.Location = new System.Drawing.Point(16, 11);
+            this.titolo_prodotto.Location = new System.Drawing.Point(13, 490);
             this.titolo_prodotto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titolo_prodotto.Name = "titolo_prodotto";
             this.titolo_prodotto.Size = new System.Drawing.Size(156, 16);
@@ -58,8 +60,8 @@
             // 
             // text_nome
             // 
-            this.text_nome.Location = new System.Drawing.Point(20, 31);
-            this.text_nome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.text_nome.Location = new System.Drawing.Point(12, 519);
+            this.text_nome.Margin = new System.Windows.Forms.Padding(4);
             this.text_nome.Name = "text_nome";
             this.text_nome.Size = new System.Drawing.Size(212, 22);
             this.text_nome.TabIndex = 1;
@@ -67,7 +69,7 @@
             // titolo_prezzo
             // 
             this.titolo_prezzo.AutoSize = true;
-            this.titolo_prezzo.Location = new System.Drawing.Point(16, 70);
+            this.titolo_prezzo.Location = new System.Drawing.Point(13, 400);
             this.titolo_prezzo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titolo_prezzo.Name = "titolo_prezzo";
             this.titolo_prezzo.Size = new System.Drawing.Size(170, 16);
@@ -76,16 +78,16 @@
             // 
             // text_prezzo
             // 
-            this.text_prezzo.Location = new System.Drawing.Point(20, 90);
-            this.text_prezzo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.text_prezzo.Location = new System.Drawing.Point(14, 420);
+            this.text_prezzo.Margin = new System.Windows.Forms.Padding(4);
             this.text_prezzo.Name = "text_prezzo";
             this.text_prezzo.Size = new System.Drawing.Size(212, 22);
             this.text_prezzo.TabIndex = 3;
             // 
             // create
             // 
-            this.create.Location = new System.Drawing.Point(20, 195);
-            this.create.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.create.Location = new System.Drawing.Point(13, 13);
+            this.create.Margin = new System.Windows.Forms.Padding(4);
             this.create.Name = "create";
             this.create.Size = new System.Drawing.Size(213, 32);
             this.create.TabIndex = 4;
@@ -98,7 +100,7 @@
             this.lista.FormattingEnabled = true;
             this.lista.ItemHeight = 16;
             this.lista.Location = new System.Drawing.Point(813, 38);
-            this.lista.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lista.Margin = new System.Windows.Forms.Padding(4);
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(236, 404);
             this.lista.TabIndex = 5;
@@ -117,8 +119,8 @@
             // ConfermaModifica
             // 
             this.ConfermaModifica.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.ConfermaModifica.Location = new System.Drawing.Point(241, 53);
-            this.ConfermaModifica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ConfermaModifica.Location = new System.Drawing.Point(231, 456);
+            this.ConfermaModifica.Margin = new System.Windows.Forms.Padding(4);
             this.ConfermaModifica.Name = "ConfermaModifica";
             this.ConfermaModifica.Size = new System.Drawing.Size(189, 49);
             this.ConfermaModifica.TabIndex = 7;
@@ -128,8 +130,8 @@
             // 
             // modifica
             // 
-            this.modifica.Location = new System.Drawing.Point(20, 235);
-            this.modifica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modifica.Location = new System.Drawing.Point(13, 53);
+            this.modifica.Margin = new System.Windows.Forms.Padding(4);
             this.modifica.Name = "modifica";
             this.modifica.Size = new System.Drawing.Size(213, 25);
             this.modifica.TabIndex = 9;
@@ -139,8 +141,8 @@
             // 
             // delete_button
             // 
-            this.delete_button.Location = new System.Drawing.Point(20, 267);
-            this.delete_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.delete_button.Location = new System.Drawing.Point(13, 86);
+            this.delete_button.Margin = new System.Windows.Forms.Padding(4);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(212, 26);
             this.delete_button.TabIndex = 10;
@@ -150,8 +152,8 @@
             // 
             // ordina
             // 
-            this.ordina.Location = new System.Drawing.Point(20, 300);
-            this.ordina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ordina.Location = new System.Drawing.Point(12, 120);
+            this.ordina.Margin = new System.Windows.Forms.Padding(4);
             this.ordina.Name = "ordina";
             this.ordina.Size = new System.Drawing.Size(213, 25);
             this.ordina.TabIndex = 11;
@@ -206,11 +208,32 @@
             this.prodotto_menocostoso.TabIndex = 16;
             this.prodotto_menocostoso.Text = "Prodotto meno costoso:";
             // 
+            // titolo_dellaModifica
+            // 
+            this.titolo_dellaModifica.AutoSize = true;
+            this.titolo_dellaModifica.Location = new System.Drawing.Point(145, 353);
+            this.titolo_dellaModifica.Name = "titolo_dellaModifica";
+            this.titolo_dellaModifica.Size = new System.Drawing.Size(179, 16);
+            this.titolo_dellaModifica.TabIndex = 17;
+            this.titolo_dellaModifica.Text = "MODIFICA DEL PRODOTTO";
+            // 
+            // salva_file
+            // 
+            this.salva_file.Location = new System.Drawing.Point(14, 152);
+            this.salva_file.Name = "salva_file";
+            this.salva_file.Size = new System.Drawing.Size(209, 26);
+            this.salva_file.TabIndex = 18;
+            this.salva_file.Text = "Salva lista su un file csv";
+            this.salva_file.UseVisualStyleBackColor = true;
+            this.salva_file.Click += new System.EventHandler(this.salva_file_Click);
+            // 
             // titolo_ordinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.salva_file);
+            this.Controls.Add(this.titolo_dellaModifica);
             this.Controls.Add(this.prodotto_menocostoso);
             this.Controls.Add(this.prodotto_costoso);
             this.Controls.Add(this.prelista);
@@ -227,7 +250,7 @@
             this.Controls.Add(this.titolo_prezzo);
             this.Controls.Add(this.text_nome);
             this.Controls.Add(this.titolo_prodotto);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "titolo_ordinamento";
             this.Text = "Finestra22F";
             this.ResumeLayout(false);
@@ -253,6 +276,8 @@
         private System.Windows.Forms.Label prelista;
         private System.Windows.Forms.Label prodotto_costoso;
         private System.Windows.Forms.Label prodotto_menocostoso;
+        private System.Windows.Forms.Label titolo_dellaModifica;
+        private System.Windows.Forms.Button salva_file;
     }
 }
 
