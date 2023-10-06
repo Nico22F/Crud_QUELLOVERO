@@ -46,6 +46,7 @@
             this.prodotto_menocostoso = new System.Windows.Forms.Label();
             this.titolo_dellaModifica = new System.Windows.Forms.Label();
             this.salva_file = new System.Windows.Forms.Button();
+            this.sconto = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titolo_prodotto
@@ -227,11 +228,21 @@
             this.salva_file.UseVisualStyleBackColor = true;
             this.salva_file.Click += new System.EventHandler(this.salva_file_Click);
             // 
+            // sconto
+            // 
+            this.sconto.Location = new System.Drawing.Point(13, 184);
+            this.sconto.Name = "sconto";
+            this.sconto.Size = new System.Drawing.Size(206, 45);
+            this.sconto.TabIndex = 19;
+            this.sconto.Text = "Aggiungi o togli la percentuale dal prezzo totale";
+            this.sconto.UseVisualStyleBackColor = true;
+            // 
             // titolo_ordinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.sconto);
             this.Controls.Add(this.salva_file);
             this.Controls.Add(this.titolo_dellaModifica);
             this.Controls.Add(this.prodotto_menocostoso);
@@ -278,6 +289,7 @@
         private System.Windows.Forms.Label prodotto_menocostoso;
         private System.Windows.Forms.Label titolo_dellaModifica;
         private System.Windows.Forms.Button salva_file;
+        private System.Windows.Forms.Button sconto;
     }
 }
 
