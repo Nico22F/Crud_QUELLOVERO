@@ -46,6 +46,7 @@ namespace Crud_QUELLOVERO
             titolo_prezzo.Visible = false;
             titolo_prodotto.Visible = false;
             titolo_dellaModifica.Visible = false;
+            percentuali.Visible = false;
         }
 
         // variabili booleane per modificare / eliminare i prodotti
@@ -57,9 +58,8 @@ namespace Crud_QUELLOVERO
         public string[] ordinamento;
         public bool ordinamento_alfabetico = false;
 
-        // funzione per aggiungere i prodotti 
 
-        // mostra prodotti
+        // elimina la lista vecchia poi aggiorna i prodotti nella lista
 
         public void visualizza(prodotto[] p)
         {
@@ -150,7 +150,11 @@ namespace Crud_QUELLOVERO
 
         // bottone che aggiunge un prodotto alla lista
         private void create_Click(object sender, EventArgs e)
-        {
+        {  
+            // rendo invisibili alcune funzioni in caso questo bottone venga cliccato dopo averle attivate
+
+            percentuali.Visible = false;
+
             //nel caso venga cliccato questo tasto, dopo che le altre "funzionalità" sono state selezionate, esse non funzioneranno
 
             conferma_elimina = false;
@@ -232,6 +236,9 @@ namespace Crud_QUELLOVERO
         // bottone che modifica un prodotto
         private void modifica_Click(object sender, EventArgs e)
         {
+            // rendo invisibili alcune funzioni in caso questo bottone venga cliccato dopo averle attivate
+
+            percentuali.Visible = false;
 
             // mostra lista prodotti
 
@@ -266,7 +273,7 @@ namespace Crud_QUELLOVERO
             return array;
         }
 
-        string nomignolo;
+        string nomignolo; // servono per la modifica del prodotto 
         float prezzolo;
 
         // modificare / eliminare un prodotto
@@ -386,38 +393,72 @@ namespace Crud_QUELLOVERO
             
             }   
         }
+        
 
         private void ConfermaModifica_Click(object sender, EventArgs e)
         {
+            bool errore = false;
+
             for (int i = 0; i < dim; i++)
             {
                 if (p[i].nome == nomignolo)
                 {
-                    p[i].prezzo = float.Parse(text_prezzo.Text);
-                    p[i].nome = text_nome.Text;
-                    break;
-                }
+                    // controllo che il noma non sia vuoto
+
+                    if (text_nome.Text == "")
+                    {
+                        MessageBox.Show("Errore nella modifica del prodotto", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        errore = true;
+                    }
+
+                    // se errore = true, allora non controllo il prezzo
+
+                    if (errore == false)
+                    {
+                        // controllo che il prezzo non contenga lettere
+
+                        float prova_prezzo = 0;
+
+                        if (!float.TryParse(text_prezzo.Text, out prova_prezzo))
+                        {
+                            MessageBox.Show("Errore nella modifica del prodotto", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        }
+                        else // conversione riuscita
+                        {
+                            p[i].nome = text_nome.Text;
+                            p[i].prezzo = float.Parse(text_prezzo.Text);
+
+                            // aggiorno lista
+                            visualizza(p);
+                            text_nome.Text = "";
+                            text_prezzo.Text = "";
+                            // aggiorno il prezzo totale
+                            Somma(ref prezzo_tot);
+                            titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
+                            // aggiorno il prodotto più costoso e meno costoso
+                            PiueMenoCostoso(ref piucostoso, ref menocostoso);
+                            prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+                            prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+                            prodotto_costoso.Visible = true;
+                            prodotto_menocostoso.Visible = true;
+                            ConfermaModifica.Visible = false;
+                            text_nome.Visible = false;
+                            text_prezzo.Visible = false;
+                            titolo_prezzo.Visible = false;
+                            titolo_prodotto.Visible = false;
+                            titolo_dellaModifica.Visible = false;
+                            MessageBox.Show("Prodotto Aggiornato!");
+                        }
+                        break;
+                    
+                    }
+                    
+                }   
             }
-            visualizza(p);
-            text_nome.Text = "";
-            text_prezzo.Text = "";
-            // aggiorno il prezzo totale
-            Somma(ref prezzo_tot);
-            titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
-            // aggiorno il prodotto più costoso e meno costoso
-            PiueMenoCostoso(ref piucostoso, ref menocostoso);
-            prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
-            prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
-            prodotto_costoso.Visible = true;
-            prodotto_menocostoso.Visible = true;
-            ConfermaModifica.Visible = false;
-            text_nome.Visible = false;
-            text_prezzo.Visible = false;
-            titolo_prezzo.Visible = false;
-            titolo_prodotto.Visible = false;
-            titolo_dellaModifica.Visible = false;
-            MessageBox.Show("Prodotto Aggiornato!");
+            
         }
+
 
         private void delete_button_Click(object sender, EventArgs e)
         {
@@ -429,6 +470,7 @@ namespace Crud_QUELLOVERO
             titolo_prezzo.Visible = false;
             titolo_prodotto.Visible = false;
             titolo_dellaModifica.Visible = false;
+            percentuali.Visible = false;
 
             // mostro quello che mi serve
 
@@ -438,9 +480,14 @@ namespace Crud_QUELLOVERO
             MessageBox.Show("Procedi con l'eliminazione del prodotto! (per continuare clicca il nome del prodotto che vuoi eliminare nella lista prodotti)");
         }
 
+
         private void salva_file_Click(object sender, EventArgs e)
         {
-            if(dim == 0) // lista vuota
+            // rendo invisibili alcune funzioni in caso questo bottone venga cliccato dopo averle attivate
+
+            percentuali.Visible = false;
+
+            if (dim == 0) // lista vuota
             {
                 MessageBox.Show("Errore durante il salvataggio su file della lista. Per poter salvare la lista su file, bisogna avere almeno un prodotto nella lista", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -469,6 +516,9 @@ namespace Crud_QUELLOVERO
 
         private void lettura_file_Click(object sender, EventArgs e)
         {
+            // tolgo la visibilià di alcune funzioni
+
+            percentuali.Visible = false;
 
             MessageBox.Show("Presta attenzione, per piacere, il file da importare deve essere scritto nel seguente modo:\n\nNomeProdotto;PrezzoProdotto\nNomeProdotto2;PrezzoProdotto2", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -476,47 +526,157 @@ namespace Crud_QUELLOVERO
             DialogResult result = file_lettura.ShowDialog(); // apre i fili (nel pc)
             string file = file_lettura.FileName; // percorso del file
 
-            // inserimento dati nella struct
-            StreamReader sr = new StreamReader(file); // inizializzo la lettura del file
+           if (file == "") // utente ha cliccato esci e non ha scelto un file
+           {
+                MessageBox.Show("OPERAZIONE ANNULLATA", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            dim = 0;
-            string[] array_temporaneo = new string[2];
-            string riga;
-            riga = sr.ReadLine();
+           }
+            else // file corretto
+           {
+                // inserimento dati nella struct
+                StreamReader sr = new StreamReader(file); // inizializzo la lettura del file
 
-            while (riga != null)
-            {
-                // aggiungo i prodotti alla lista e allo struct
-                char separatore = ';';
-                array_temporaneo = Split(riga, separatore);
-                p[dim].nome = array_temporaneo[0];
-                p[dim].prezzo = float.Parse(array_temporaneo[1]);
-                dim++;
+                dim = 0;
+                string[] array_temporaneo = new string[2];
+                string riga;
                 riga = sr.ReadLine();
+
+                while (riga != null)
+                {
+                    // aggiungo i prodotti alla lista e allo struct
+                    char separatore = ';';
+                    array_temporaneo = Split(riga, separatore);
+                    p[dim].nome = array_temporaneo[0];
+                    p[dim].prezzo = float.Parse(array_temporaneo[1]);
+                    dim++;
+                    riga = sr.ReadLine();
+                }
+
+                sr.Close();
+
+                // tutti gli aggiornamenti
+
+                visualizza(p);
+                lista.Visible = true;
+                prelista.Visible = false;
+                titolo.Visible = true;
+                ordine.Visible = true;
+                titolo_totale.Visible = true;
+                // aggiorno il prezzo totale
+                Somma(ref prezzo_tot);
+                titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
+                // aggiorno il prodotto più costoso e meno costoso
+                PiueMenoCostoso(ref piucostoso, ref menocostoso);
+                prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+                prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+                prodotto_costoso.Visible = true;
+                prodotto_menocostoso.Visible = true;
+                // conferma aggiunta prodotto
+                MessageBox.Show("Lista importata con successo!");
             }
 
-            sr.Close();
+        }
 
-            // tutti gli aggiornamenti
+        // aggiungere o sottrarre una percentuale da tutti i prodotti 
+        private void sconto_Click(object sender, EventArgs e)
+        {
+            // se non ce nessun prodotto nella lista, allora l'utente non può proseguire
 
-            visualizza(p);
-            lista.Visible = true;
-            prelista.Visible = false;
-            titolo.Visible = true;
-            ordine.Visible = true;
-            titolo_totale.Visible = true;
-            // aggiorno il prezzo totale
-            Somma(ref prezzo_tot);
-            titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
-            // aggiorno il prodotto più costoso e meno costoso
-            PiueMenoCostoso(ref piucostoso, ref menocostoso);
-            prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
-            prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
-            prodotto_costoso.Visible = true;
-            prodotto_menocostoso.Visible = true;
-            // conferma aggiunta prodotto
-            MessageBox.Show("Lista importata con successo!");
+            if (dim == 0)
+            {
+                MessageBox.Show("Per aggiungere o sottrarre una percentuale devi avere almeno un prodotto nella lista", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+            }
+            else // utente ha almeno un prodotto. Può proseguire
+            {
+                percentuali.Visible = true;
+                MessageBox.Show("Seleziona la tipologia di percentuale da applicare");
+            }
+        }
+
+        // combox della scelta del tipo di percentuale (aggiungere o sottrarre)
+        private void percentuali_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // utente sceglie una delle due opzioni:
+
+
+            if (percentuali.SelectedItem.ToString() == "aggiungi") // aggiungi percentuale
+            {
+                string titolo_input = "Aggiungi Percentuale";
+                string esempio = "inserisci qua la percentuale";
+                string frase = "Inserisci la percentuale vuoi aggiungere ai tuoi prodotti";
+                object input_aggiungiprodotto = Interaction.InputBox(frase, titolo_input, esempio);
+                float prova_numero = 0; // se la conversione risultasse corretta (questa sotto) la stringa convertita in float finirebbe qua
+
+                // tryparse serve per vedere se la conversione funziona
+                if (!float.TryParse((string)input_aggiungiprodotto, out prova_numero))
+                {
+                    MessageBox.Show("Errore nell'aggiunta della percentuale", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    percentuali.Visible = false;
+                }
+                else // conversione riuscita
+                {
+                    // aggiungo la percentuale ad ogni prodotto
+
+                    for (int i = 0; i < dim; i++)
+                    {
+                        p[i].prezzo += ((p[i].prezzo / 100) * prova_numero);
+                    }
+
+                    // aggiorno lista, e funzioniallegate
+
+                    visualizza(p);
+                    // aggiorno il prezzo totale
+                    Somma(ref prezzo_tot);
+                    titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
+                    // aggiorno il prodotto più costoso e meno costoso
+                    PiueMenoCostoso(ref piucostoso, ref menocostoso);
+                    prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+                    prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+                    percentuali.Visible = false;
+                }
+            }
+
+
+            if (percentuali.SelectedItem.ToString() == "sottrai") // sottrai percentuale
+            {
+                // input percentuale con inputbox
+
+                string titolo_input = "Sottrai Percentuale";
+                string esempio = "inserisci qua la percentuale";
+                string frase = "Inserisci la percentuale vuoi sottrarre ai tuoi prodotti";
+                object input_aggiungiprodotto = Interaction.InputBox(frase, titolo_input, esempio);
+                float prova_numero = 0; // se la conversione risultasse corretta (questa sotto) la stringa convertita in float finirebbe qua
+
+                // tryparse serve per vedere se la conversione funziona
+                if (!float.TryParse((string)input_aggiungiprodotto, out prova_numero))
+                {
+                    MessageBox.Show("Errore nell'aggiunta della percentuale", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    percentuali.Visible = false;
+                }
+                else // conversione riuscita
+                {
+                    // aggiungo la percentuale ad ogni prodotto
+
+                    for (int i = 0; i < dim; i++)
+                    {
+                        p[i].prezzo -= ((p[i].prezzo / 100) * prova_numero);
+                    }
+
+                    // aggiorno lista, e funzioniallegate
+
+                    visualizza(p);
+                    // aggiorno il prezzo totale
+                    Somma(ref prezzo_tot);
+                    titolo_totale.Text = $"Totale prezzo: {prezzo_tot}€";
+                    // aggiorno il prodotto più costoso e meno costoso
+                    PiueMenoCostoso(ref piucostoso, ref menocostoso);
+                    prodotto_costoso.Text = $"Prodotto più costoso: {p[piucostoso].nome} ({p[piucostoso].prezzo}€)";
+                    prodotto_menocostoso.Text = $"Prodotto meno costoso: {p[menocostoso].nome} ({p[menocostoso].prezzo}€)";
+                    percentuali.Visible = false;
+                }
+
+            }
         }
 
         // bottone per ordinare 
