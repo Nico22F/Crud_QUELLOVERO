@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
+using Microsoft.VisualBasic; // per aggiungerlo: tasto destro, aggiugi, riferimenti e scegli questa opzione. Serve per gli inputboxs
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO; // serve per usare streamread e streamwriter
 using System.Diagnostics;

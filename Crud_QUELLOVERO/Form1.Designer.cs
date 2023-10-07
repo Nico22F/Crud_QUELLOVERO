@@ -175,7 +175,7 @@
             this.ordina.Location = new System.Drawing.Point(231, 191);
             this.ordina.Margin = new System.Windows.Forms.Padding(4);
             this.ordina.Name = "ordina";
-            this.ordina.Size = new System.Drawing.Size(204, 64);
+            this.ordina.Size = new System.Drawing.Size(207, 64);
             this.ordina.TabIndex = 11;
             this.ordina.Text = " Ordina in modo alfabetico";
             this.ordina.UseVisualStyleBackColor = true;
@@ -254,7 +254,7 @@
             this.salva_file.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.salva_file.Location = new System.Drawing.Point(231, 263);
             this.salva_file.Name = "salva_file";
-            this.salva_file.Size = new System.Drawing.Size(204, 31);
+            this.salva_file.Size = new System.Drawing.Size(206, 37);
             this.salva_file.TabIndex = 18;
             this.salva_file.Text = "Salva lista su un file csv";
             this.salva_file.UseVisualStyleBackColor = true;
