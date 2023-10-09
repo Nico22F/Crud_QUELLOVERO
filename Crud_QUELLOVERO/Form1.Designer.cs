@@ -57,19 +57,17 @@
             this.titolo_prodotto.AutoSize = true;
             this.titolo_prodotto.Font = new System.Drawing.Font("Mongolian Baiti", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titolo_prodotto.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.titolo_prodotto.Location = new System.Drawing.Point(13, 490);
-            this.titolo_prodotto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titolo_prodotto.Location = new System.Drawing.Point(10, 398);
             this.titolo_prodotto.Name = "titolo_prodotto";
-            this.titolo_prodotto.Size = new System.Drawing.Size(202, 18);
+            this.titolo_prodotto.Size = new System.Drawing.Size(176, 15);
             this.titolo_prodotto.TabIndex = 0;
             this.titolo_prodotto.Text = "NOME DEL PRODOTTO";
             // 
             // text_nome
             // 
-            this.text_nome.Location = new System.Drawing.Point(12, 519);
-            this.text_nome.Margin = new System.Windows.Forms.Padding(4);
+            this.text_nome.Location = new System.Drawing.Point(9, 422);
             this.text_nome.Name = "text_nome";
-            this.text_nome.Size = new System.Drawing.Size(212, 22);
+            this.text_nome.Size = new System.Drawing.Size(160, 20);
             this.text_nome.TabIndex = 1;
             // 
             // titolo_prezzo
@@ -77,29 +75,26 @@
             this.titolo_prezzo.AutoSize = true;
             this.titolo_prezzo.Font = new System.Drawing.Font("Mongolian Baiti", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titolo_prezzo.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.titolo_prezzo.Location = new System.Drawing.Point(13, 400);
-            this.titolo_prezzo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titolo_prezzo.Location = new System.Drawing.Point(10, 325);
             this.titolo_prezzo.Name = "titolo_prezzo";
-            this.titolo_prezzo.Size = new System.Drawing.Size(217, 18);
+            this.titolo_prezzo.Size = new System.Drawing.Size(191, 15);
             this.titolo_prezzo.TabIndex = 2;
             this.titolo_prezzo.Text = "PREZZO DEL PRODOTTO";
             // 
             // text_prezzo
             // 
-            this.text_prezzo.Location = new System.Drawing.Point(14, 420);
-            this.text_prezzo.Margin = new System.Windows.Forms.Padding(4);
+            this.text_prezzo.Location = new System.Drawing.Point(10, 341);
             this.text_prezzo.Name = "text_prezzo";
-            this.text_prezzo.Size = new System.Drawing.Size(212, 22);
+            this.text_prezzo.Size = new System.Drawing.Size(160, 20);
             this.text_prezzo.TabIndex = 3;
             // 
             // create
             // 
             this.create.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.create.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.create.Location = new System.Drawing.Point(9, 129);
-            this.create.Margin = new System.Windows.Forms.Padding(4);
+            this.create.Location = new System.Drawing.Point(7, 105);
             this.create.Name = "create";
-            this.create.Size = new System.Drawing.Size(213, 54);
+            this.create.Size = new System.Drawing.Size(160, 44);
             this.create.TabIndex = 4;
             this.create.Text = "Aggiungi un prodotto alla lista";
             this.create.UseVisualStyleBackColor = true;
@@ -108,11 +103,9 @@
             // lista
             // 
             this.lista.FormattingEnabled = true;
-            this.lista.ItemHeight = 16;
-            this.lista.Location = new System.Drawing.Point(795, 61);
-            this.lista.Margin = new System.Windows.Forms.Padding(4);
+            this.lista.Location = new System.Drawing.Point(596, 50);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(236, 404);
+            this.lista.Size = new System.Drawing.Size(178, 329);
             this.lista.TabIndex = 5;
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             // 
@@ -121,10 +114,9 @@
             this.titolo.AutoSize = true;
             this.titolo.Font = new System.Drawing.Font("Poor Richard", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titolo.ForeColor = System.Drawing.Color.MediumBlue;
-            this.titolo.Location = new System.Drawing.Point(792, 41);
-            this.titolo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titolo.Location = new System.Drawing.Point(594, 33);
             this.titolo.Name = "titolo";
-            this.titolo.Size = new System.Drawing.Size(61, 18);
+            this.titolo.Size = new System.Drawing.Size(52, 14);
             this.titolo.TabIndex = 6;
             this.titolo.Text = "Prodotti";
             // 
@@ -133,10 +125,9 @@
             this.ConfermaModifica.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.ConfermaModifica.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfermaModifica.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.ConfermaModifica.Location = new System.Drawing.Point(266, 457);
-            this.ConfermaModifica.Margin = new System.Windows.Forms.Padding(4);
+            this.ConfermaModifica.Location = new System.Drawing.Point(200, 371);
             this.ConfermaModifica.Name = "ConfermaModifica";
-            this.ConfermaModifica.Size = new System.Drawing.Size(237, 49);
+            this.ConfermaModifica.Size = new System.Drawing.Size(178, 40);
             this.ConfermaModifica.TabIndex = 7;
             this.ConfermaModifica.Text = "Conferma modifica";
             this.ConfermaModifica.UseVisualStyleBackColor = true;
@@ -146,10 +137,9 @@
             // 
             this.modifica.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifica.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.modifica.Location = new System.Drawing.Point(9, 191);
-            this.modifica.Margin = new System.Windows.Forms.Padding(4);
+            this.modifica.Location = new System.Drawing.Point(7, 155);
             this.modifica.Name = "modifica";
-            this.modifica.Size = new System.Drawing.Size(213, 64);
+            this.modifica.Size = new System.Drawing.Size(160, 52);
             this.modifica.TabIndex = 9;
             this.modifica.Text = "Modifica un prodotto presente nella lista";
             this.modifica.UseVisualStyleBackColor = true;
@@ -159,10 +149,9 @@
             // 
             this.delete_button.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete_button.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.delete_button.Location = new System.Drawing.Point(9, 263);
-            this.delete_button.Margin = new System.Windows.Forms.Padding(4);
+            this.delete_button.Location = new System.Drawing.Point(7, 214);
             this.delete_button.Name = "delete_button";
-            this.delete_button.Size = new System.Drawing.Size(212, 72);
+            this.delete_button.Size = new System.Drawing.Size(159, 58);
             this.delete_button.TabIndex = 10;
             this.delete_button.Text = "Elimina un prodotto dalla lista";
             this.delete_button.UseVisualStyleBackColor = true;
@@ -172,10 +161,9 @@
             // 
             this.ordina.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ordina.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.ordina.Location = new System.Drawing.Point(231, 191);
-            this.ordina.Margin = new System.Windows.Forms.Padding(4);
+            this.ordina.Location = new System.Drawing.Point(173, 155);
             this.ordina.Name = "ordina";
-            this.ordina.Size = new System.Drawing.Size(207, 64);
+            this.ordina.Size = new System.Drawing.Size(155, 52);
             this.ordina.TabIndex = 11;
             this.ordina.Text = " Ordina in modo alfabetico";
             this.ordina.UseVisualStyleBackColor = true;
@@ -186,10 +174,9 @@
             this.ordine.AutoSize = true;
             this.ordine.Font = new System.Drawing.Font("Poor Richard", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ordine.ForeColor = System.Drawing.Color.MediumBlue;
-            this.ordine.Location = new System.Drawing.Point(897, 41);
-            this.ordine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ordine.Location = new System.Drawing.Point(673, 33);
             this.ordine.Name = "ordine";
-            this.ordine.Size = new System.Drawing.Size(151, 18);
+            this.ordine.Size = new System.Drawing.Size(127, 14);
             this.ordine.TabIndex = 12;
             this.ordine.Text = "ordine alfabetico: NO";
             // 
@@ -198,10 +185,9 @@
             this.titolo_totale.AutoSize = true;
             this.titolo_totale.Font = new System.Drawing.Font("Poor Richard", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titolo_totale.ForeColor = System.Drawing.Color.MediumBlue;
-            this.titolo_totale.Location = new System.Drawing.Point(792, 469);
-            this.titolo_totale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titolo_totale.Location = new System.Drawing.Point(594, 381);
             this.titolo_totale.Name = "titolo_totale";
-            this.titolo_totale.Size = new System.Drawing.Size(105, 20);
+            this.titolo_totale.Size = new System.Drawing.Size(89, 17);
             this.titolo_totale.TabIndex = 13;
             this.titolo_totale.Text = "Totale prezzo:";
             // 
@@ -209,9 +195,10 @@
             // 
             this.prelista.AutoSize = true;
             this.prelista.Font = new System.Drawing.Font("OCR A Extended", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prelista.Location = new System.Drawing.Point(445, 242);
+            this.prelista.Location = new System.Drawing.Point(334, 197);
+            this.prelista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.prelista.Name = "prelista";
-            this.prelista.Size = new System.Drawing.Size(610, 13);
+            this.prelista.Size = new System.Drawing.Size(541, 12);
             this.prelista.TabIndex = 14;
             this.prelista.Text = "Mhm. sembra non esserci nessun prodotto.. Prova ad aggiungerne uno!";
             // 
@@ -220,9 +207,10 @@
             this.prodotto_costoso.AutoSize = true;
             this.prodotto_costoso.Font = new System.Drawing.Font("Poor Richard", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prodotto_costoso.ForeColor = System.Drawing.Color.MediumBlue;
-            this.prodotto_costoso.Location = new System.Drawing.Point(792, 503);
+            this.prodotto_costoso.Location = new System.Drawing.Point(594, 409);
+            this.prodotto_costoso.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.prodotto_costoso.Name = "prodotto_costoso";
-            this.prodotto_costoso.Size = new System.Drawing.Size(153, 20);
+            this.prodotto_costoso.Size = new System.Drawing.Size(133, 17);
             this.prodotto_costoso.TabIndex = 15;
             this.prodotto_costoso.Text = "Prodotto più costoso:";
             // 
@@ -231,9 +219,10 @@
             this.prodotto_menocostoso.AutoSize = true;
             this.prodotto_menocostoso.Font = new System.Drawing.Font("Poor Richard", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prodotto_menocostoso.ForeColor = System.Drawing.Color.MediumBlue;
-            this.prodotto_menocostoso.Location = new System.Drawing.Point(792, 529);
+            this.prodotto_menocostoso.Location = new System.Drawing.Point(594, 430);
+            this.prodotto_menocostoso.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.prodotto_menocostoso.Name = "prodotto_menocostoso";
-            this.prodotto_menocostoso.Size = new System.Drawing.Size(168, 20);
+            this.prodotto_menocostoso.Size = new System.Drawing.Size(145, 17);
             this.prodotto_menocostoso.TabIndex = 16;
             this.prodotto_menocostoso.Text = "Prodotto meno costoso:";
             // 
@@ -242,9 +231,10 @@
             this.titolo_dellaModifica.AutoSize = true;
             this.titolo_dellaModifica.Font = new System.Drawing.Font("Mongolian Baiti", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titolo_dellaModifica.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.titolo_dellaModifica.Location = new System.Drawing.Point(263, 424);
+            this.titolo_dellaModifica.Location = new System.Drawing.Point(197, 344);
+            this.titolo_dellaModifica.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.titolo_dellaModifica.Name = "titolo_dellaModifica";
-            this.titolo_dellaModifica.Size = new System.Drawing.Size(240, 18);
+            this.titolo_dellaModifica.Size = new System.Drawing.Size(208, 15);
             this.titolo_dellaModifica.TabIndex = 17;
             this.titolo_dellaModifica.Text = "MODIFICA DEL PRODOTTO";
             // 
@@ -252,9 +242,10 @@
             // 
             this.salva_file.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.salva_file.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.salva_file.Location = new System.Drawing.Point(231, 263);
+            this.salva_file.Location = new System.Drawing.Point(173, 214);
+            this.salva_file.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.salva_file.Name = "salva_file";
-            this.salva_file.Size = new System.Drawing.Size(206, 37);
+            this.salva_file.Size = new System.Drawing.Size(154, 30);
             this.salva_file.TabIndex = 18;
             this.salva_file.Text = "Salva lista su un file csv";
             this.salva_file.UseVisualStyleBackColor = true;
@@ -264,9 +255,10 @@
             // 
             this.sconto.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sconto.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.sconto.Location = new System.Drawing.Point(231, 127);
+            this.sconto.Location = new System.Drawing.Point(173, 103);
+            this.sconto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.sconto.Name = "sconto";
-            this.sconto.Size = new System.Drawing.Size(206, 58);
+            this.sconto.Size = new System.Drawing.Size(154, 47);
             this.sconto.TabIndex = 19;
             this.sconto.Text = "Aggiungi o togli la percentuale dal prezzo totale";
             this.sconto.UseVisualStyleBackColor = true;
@@ -276,9 +268,10 @@
             // 
             this.lettura_file.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lettura_file.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.lettura_file.Location = new System.Drawing.Point(231, 306);
+            this.lettura_file.Location = new System.Drawing.Point(173, 249);
+            this.lettura_file.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lettura_file.Name = "lettura_file";
-            this.lettura_file.Size = new System.Drawing.Size(204, 29);
+            this.lettura_file.Size = new System.Drawing.Size(153, 24);
             this.lettura_file.TabIndex = 20;
             this.lettura_file.Text = "importa lista";
             this.lettura_file.UseVisualStyleBackColor = true;
@@ -290,9 +283,10 @@
             this.percentuali.Items.AddRange(new object[] {
             "aggiungi",
             "sottrai"});
-            this.percentuali.Location = new System.Drawing.Point(443, 138);
+            this.percentuali.Location = new System.Drawing.Point(332, 112);
+            this.percentuali.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.percentuali.Name = "percentuali";
-            this.percentuali.Size = new System.Drawing.Size(177, 24);
+            this.percentuali.Size = new System.Drawing.Size(134, 21);
             this.percentuali.TabIndex = 21;
             this.percentuali.SelectedIndexChanged += new System.EventHandler(this.percentuali_SelectedIndexChanged);
             // 
@@ -301,19 +295,20 @@
             this.TITOLO22F.AutoSize = true;
             this.TITOLO22F.Font = new System.Drawing.Font("MV Boli", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TITOLO22F.ForeColor = System.Drawing.Color.Firebrick;
-            this.TITOLO22F.Location = new System.Drawing.Point(5, 9);
+            this.TITOLO22F.Location = new System.Drawing.Point(4, 7);
+            this.TITOLO22F.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TITOLO22F.Name = "TITOLO22F";
-            this.TITOLO22F.Size = new System.Drawing.Size(1062, 23);
+            this.TITOLO22F.Size = new System.Drawing.Size(878, 20);
             this.TITOLO22F.TabIndex = 22;
-            this.TITOLO22F.Text = "BENVENUTO NELLA PAGINA DEI PRODOTTI 22F! SELEZIONA UNA FUNZIONE PER MODIFICARE LA" +
-    " LISTA";
+            this.TITOLO22F.Text = "BENVENUTO NELLA PAGINA DEI PRODOTTI22F! SELEZIONA UNA FUNZIONE PER MODIFICARE LA " +
+    "LISTA";
             // 
             // titolo_ordinamento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.TITOLO22F);
             this.Controls.Add(this.percentuali);
             this.Controls.Add(this.lettura_file);
@@ -336,7 +331,6 @@
             this.Controls.Add(this.titolo_prezzo);
             this.Controls.Add(this.text_nome);
             this.Controls.Add(this.titolo_prodotto);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "titolo_ordinamento";
             this.Text = "Finestra22F";
             this.ResumeLayout(false);

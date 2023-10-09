@@ -234,19 +234,27 @@ namespace Crud_QUELLOVERO
         }
 
         // bottone che modifica un prodotto
-        private void modifica_Click(object sender, EventArgs e)
+        public void modifica_Click(object sender, EventArgs e)
         {
-            // rendo invisibili alcune funzioni in caso questo bottone venga cliccato dopo averle attivate
+            if (dim == 0) // struct vuoto
+            {
+                MessageBox.Show("Errore nella modifica del prodotto. Per usare questa funzione deve essereci almeno 1 prodottto", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            percentuali.Visible = false;
+            }
+            else
+            {
+                // rendo invisibili alcune funzioni in caso questo bottone venga cliccato dopo averle attivate
 
-            // mostra lista prodotti
+                percentuali.Visible = false;
 
-            lista.Visible = true;
-            conferma_modifica = true;
-            conferma_elimina = false; // può essere attivata una sola funzione
-            MessageBox.Show("Procedi con la modifica del prodotto da lei selezionato (per continuare clicca il nome del prodotto che vuoi modificare nella lista prodotti)");
+                // mostra lista prodotti
 
+                lista.Visible = true;
+                conferma_modifica = true;
+                conferma_elimina = false; // può essere attivata una sola funzione
+                MessageBox.Show("Procedi con la modifica del prodotto da lei selezionato (per continuare clicca il nome del prodotto che vuoi modificare nella lista prodotti)");
+
+            }
         }
 
         // split
@@ -460,24 +468,31 @@ namespace Crud_QUELLOVERO
         }
 
 
-        private void delete_button_Click(object sender, EventArgs e)
+        public void delete_button_Click(object sender, EventArgs e)
         {
-            // se modifica è attivo, allora rendo invisibili gli oggetti
+           if(dim == 0) // se l'array è vuoto, non funziona
+           {
+                MessageBox.Show("Errore nell'eliminazione del prodotto. Per usare questa funzione deve essereci almeno 1 prodottto", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+           }
+           else // array non vuoto
+           {
+                // se modifica è attivo, allora rendo invisibili gli oggetti
 
-            ConfermaModifica.Visible = false;
-            text_nome.Visible = false;
-            text_prezzo.Visible = false;
-            titolo_prezzo.Visible = false;
-            titolo_prodotto.Visible = false;
-            titolo_dellaModifica.Visible = false;
-            percentuali.Visible = false;
+                ConfermaModifica.Visible = false;
+                text_nome.Visible = false;
+                text_prezzo.Visible = false;
+                titolo_prezzo.Visible = false;
+                titolo_prodotto.Visible = false;
+                titolo_dellaModifica.Visible = false;
+                percentuali.Visible = false;
 
-            // mostro quello che mi serve
+                // mostro quello che mi serve
 
-            lista.Visible = true;
-            conferma_elimina = true;
-            conferma_modifica = false;
-            MessageBox.Show("Procedi con l'eliminazione del prodotto! (per continuare clicca il nome del prodotto che vuoi eliminare nella lista prodotti)");
+                lista.Visible = true;
+                conferma_elimina = true;
+                conferma_modifica = false;
+                MessageBox.Show("Procedi con l'eliminazione del prodotto! (per continuare clicca il nome del prodotto che vuoi eliminare nella lista prodotti)");
+            }
         }
 
 
@@ -682,25 +697,31 @@ namespace Crud_QUELLOVERO
         // bottone per ordinare 
         private void ordina_Click(object sender, EventArgs e)
         {
-           
-            // se non è già ordinato
-            if (ordinamento_alfabetico == false)
+            if (dim < 2) // struct vuota
             {
-                OrdinaAlfabeticamente(ref ordinamento);
-                lista.Items.Clear();
-                for (int i = 0; i < ordinamento.Length; i++)
-                {
-                    lista.Items.Add(ordinamento[i]);
-                }
-                ordine.Text = "Ordine alfabetico: SI";
-                ordinamento_alfabetico = true;
+                MessageBox.Show("Errore nell'ordinamento della lista. Per poterlo ordinare servono alemno 2 prodotti", "ERRORE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else // se è già ordinato
+            else
             {
-                lista.Items.Clear();
-                ordine.Text = "Ordine alfabetico: NO";
-                visualizza(p);
-                ordinamento_alfabetico = false;
+                // se non è già ordinato
+                if (ordinamento_alfabetico == false)
+                {
+                    OrdinaAlfabeticamente(ref ordinamento);
+                    lista.Items.Clear();
+                    for (int i = 0; i < ordinamento.Length; i++)
+                    {
+                        lista.Items.Add(ordinamento[i]);
+                    }
+                    ordine.Text = "Ordine alfabetico: SI";
+                    ordinamento_alfabetico = true;
+                }
+                else // se è già ordinato
+                {
+                    lista.Items.Clear();
+                    ordine.Text = "Ordine alfabetico: NO";
+                    visualizza(p);
+                    ordinamento_alfabetico = false;
+                }
             }
         }
     }
