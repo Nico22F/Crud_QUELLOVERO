@@ -314,6 +314,16 @@ namespace Crud_QUELLOVERO
                     ConfermaModifica.Visible = true;
                     nomignolo = text_nome.Text;
                     prezzolo = float.Parse(text_prezzo.Text);
+
+                    // disattivo gli altri puslanti
+
+                    create.Enabled = false;
+                    sconto.Enabled = false;
+                    ordina.Enabled = false;
+                    delete_button.Enabled = false;
+                    salva_file.Enabled = false;
+                    lettura_file.Enabled=false;
+                    modifica.Enabled = false;
                }
                 
             }
@@ -457,6 +467,16 @@ namespace Crud_QUELLOVERO
                             titolo_prodotto.Visible = false;
                             titolo_dellaModifica.Visible = false;
                             MessageBox.Show("Prodotto Aggiornato!");
+
+                            // attivo gli altri puslanti
+
+                            create.Enabled = true;
+                            sconto.Enabled = true;
+                            ordina.Enabled = true;
+                            delete_button.Enabled = true;
+                            salva_file.Enabled = true;
+                            lettura_file.Enabled = true;
+                            modifica.Enabled = true;
                         }
                         break;
                     
